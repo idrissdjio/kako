@@ -16,7 +16,7 @@ function Login({navigation}) {
             const user = userCredentials.user;
             alert("Login avec sucess")
             console.log(`Logged in with ${user.email}`);
-            navigation.replace("Home")
+            navigation.replace("MyTabs")
         })
         .catch(error => alert(error.message))
     }

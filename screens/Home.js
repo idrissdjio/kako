@@ -188,7 +188,6 @@ function Home({route, navigation}) {
            <ItemsHome data={DATA}/>
        </View>
        </ScrollView>
-       <BottomTabs/>
        
    </View>
  );
@@ -240,7 +239,7 @@ text2: {
     fontStyle: "italic"
 },
 scrollViewcat: {
-    marginVertical: 10,
+    marginTop: 10,
     backgroundColor: "#edf2f4",
     padding: 10,
 },

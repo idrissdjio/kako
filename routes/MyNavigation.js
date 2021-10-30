@@ -8,6 +8,8 @@ import SignUp from '../screens/SignUp';
 import VerifyPhone from '../screens/VerifyPhone';
 import Home from '../screens/Home';
 import SignOut from '../screens/SignOut';
+import Account from '../screens/Account';
+import MyTabs from '../components/MyTabs';
 
 const Stack = createNativeStackNavigator();
 
@@ -21,6 +23,8 @@ function MyNavigation(props) {
                 <Stack.Screen name="Login" component={Login}/>
                 <Stack.Screen name="SignUp" component={SignUp}/>
                 <Stack.Screen name="SignOut" component={SignOut}/>
+                <Stack.Screen name="Account" component={Account}/>
+                <Stack.Screen name="MyTabs" component={MyTabs}/>
             </Stack.Navigator>
         </NavigationContainer>
  );
