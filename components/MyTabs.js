@@ -38,10 +38,10 @@ export default function MyTabs() {
           tabBarInactiveTintColor: 'gray',
         })}
       >
-        <Tab.Screen name="Home" component={Home} />
-        <Tab.Screen name="Messages" component={Messages} />
-        <Tab.Screen name="Cart" component={Cart} />
-        <Tab.Screen name="Account" component={Account} />
+        <Tab.Screen name="Home" component={Home} options={{headerShown: false}}/>
+        <Tab.Screen name="Messages" component={Messages} options={{headerShown: true}}/>
+        <Tab.Screen name="Cart" component={Cart} options={{headerShown: true}}/>
+        <Tab.Screen name="Account" component={Account} options={{headerShown: true}}/>
       </Tab.Navigator>
   );
 }

@@ -19,6 +19,7 @@ function Login({navigation}) {
             navigation.replace("MyTabs")
         })
         .catch(error => alert(error.message))
+        // navigation.replace("MyTabs")
     }
 
     return (

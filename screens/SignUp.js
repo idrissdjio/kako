@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, Text, TextInput, TouchableOpacity } from 'react-native';
-import {auth} from '../firebase'
+import {auth, firebase} from '../firebase'
 
 function SignUp({navigation}) {
 
@@ -16,7 +16,15 @@ function SignUp({navigation}) {
                 .createUserWithEmailAndPassword(email, password)
                 .then(userCredentials => {
                     const user = userCredentials.user;
-                    alert("Utilisateur Cree avec sucess")
+
+                    firebase.database().ref('users/').push({
+                        username: name,
+                        email: email,
+                        phone, phone,
+                        password: password
+                    });
+                    
+                    alert("Compte cree avec sucess")
                     console.log(`Registered with ${user.email}`);
                     navigation.navigate("Login", {password: password, email: email})
                 })

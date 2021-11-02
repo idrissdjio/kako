@@ -7,14 +7,14 @@ function SignOut({navigation}) {
         auth
             .signOut()
             .then(() => {
-                navigation.replace("Login")
+                navigation.replace("Welcome")
+                alert("LogOut sucessfully")
             })
             .catch(error => alert(error.message))
     }
 
     return (
    <View style={styles.container}>
-       <Text>Email: {auth.currentUser?.email}</Text>
        <TouchableOpacity 
                 activeOpacity={0.6} 
                 style={styles.logOutView}
@@ -29,7 +29,7 @@ function SignOut({navigation}) {
 const styles = StyleSheet.create({
 container: {},
 logOutView: {
-    marginTop: 18,
+    marginTop: 48,
     width: '100%',
     height: 60,
     backgroundColor: "#C37B89",

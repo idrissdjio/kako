@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Text, Platform, StatusBar, SafeAreaView } from 'react-native';
+import { View, StyleSheet, Text, Platform, StatusBar, SafeAreaView, TouchableOpacity, ScrollView } from 'react-native';
 import { FontAwesome5} from '@expo/vector-icons'; 
 
 function Account({navigation}) {
@@ -10,30 +10,42 @@ function Account({navigation}) {
                <Text style={styles.greetingtext}>Hey,</Text>
                <Text style={styles.greetingName}>Idriss!</Text>
            </View>
-           <View style={styles.pictureView}>
+           <TouchableOpacity style={styles.pictureView}>
                <FontAwesome5 name="user-alt" size={45} color="grey"/>
-           </View>
+           </TouchableOpacity>
        </View>
+       <ScrollView style={styles.body}>
+           <AccountElement text="Creer une Boutique" onPress={() => console.log("creer")}/>
+           <AccountElement text="Settings" navigation={() => navigation.navigate("Settings")}/>
+       </ScrollView>
+
    </SafeAreaView>
  );
 }
 
 const styles = StyleSheet.create({
+body: {
+    borderRadius: 10,
+    height: "100%",
+    marginTop: 50,
+    marginHorizontal: "3%",
+},
 container: {
     // marginTop: 20,
     flex: 1,
-    marginHorizontal: "3%",
-    backgroundColor: "white",
+    // marginHorizontal: "3%",
+    backgroundColor: "#e9ecef",
     paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
 },
 header: {
     flexDirection: "row",
     backgroundColor: "#C37B89",
-    height: "18%",
+    height: "25%",
     borderRadius: 15,
     justifyContent: "space-between",
     padding: 10,
-    alignItems: "center"
+    alignItems: "center",
+    marginHorizontal: "3%",
 },
 greetingView: {
     marginLeft: 5,
@@ -52,12 +64,35 @@ greetingName: {
 },
 pictureView: {
     backgroundColor: 'white',
-    width: 90,
-    height: 90,
-    borderRadius: 45,
+    width: 120,
+    height: 120,
+    borderRadius: 60,
     alignItems: "center",
     justifyContent: "center"
-}
+},
+acountElet: {
+    width: "100%",
+    height: 90,
+    backgroundColor: "#89c2d9",
+    marginBottom: 20,
+    borderRadius: 15,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingHorizontal: 10,
+},
+accountEltText: {
+    fontSize: 23,
+    fontWeight: "700",
+    color: "white"
+},
 })
 
 export default Account;
+
+const AccountElement = ({text, navigation}) => (
+    <TouchableOpacity style={styles.acountElet} activeOpacity="0.8" onPress={navigation}>
+        <Text style={styles.accountEltText}>{text}</Text>
+        <FontAwesome5 name="arrow-right" size={40} color="white"/>
+    </TouchableOpacity>
+)

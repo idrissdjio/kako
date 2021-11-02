@@ -7,24 +7,26 @@ import Login from '../screens/Login';
 import SignUp from '../screens/SignUp';
 import VerifyPhone from '../screens/VerifyPhone';
 import Home from '../screens/Home';
-import SignOut from '../screens/SignOut';
 import Account from '../screens/Account';
 import MyTabs from '../components/MyTabs';
+import SignOut from '../components/SignOut';
+import SettingScreen from '../screens/SettingScreen';
 
 const Stack = createNativeStackNavigator();
 
 function MyNavigation(props) {
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName="Welcome" screenOptions={{headerShown: false}}>
-                <Stack.Screen name="Home" component={Home} options={{gestureEnabled: false,}}/>
+            <Stack.Navigator initialRouteName="Welcome">
+                <Stack.Screen name="Home" component={Home}/>
                 <Stack.Screen name="VerifyPhone" component={VerifyPhone}/>
-                <Stack.Screen name="Welcome" component={Welcome}/>
-                <Stack.Screen name="Login" component={Login}/>
-                <Stack.Screen name="SignUp" component={SignUp}/>
+                <Stack.Screen name="Welcome" component={Welcome} options={{headerShown: false}}/>
+                <Stack.Screen name="Login" component={Login} options={{headerShown: false}}/>
+                <Stack.Screen name="SignUp" component={SignUp} options={{headerShown: false}}/>
+                <Stack.Screen name="Account" component={Account} options={{gestureEnabled: false,}}/>
+                <Stack.Screen name="MyTabs" component={MyTabs} options={{gestureEnabled: false, headerShown: false}}/>
                 <Stack.Screen name="SignOut" component={SignOut}/>
-                <Stack.Screen name="Account" component={Account}/>
-                <Stack.Screen name="MyTabs" component={MyTabs}/>
+                <Stack.Screen name="Settings" component={SettingScreen}/>
             </Stack.Navigator>
         </NavigationContainer>
  );

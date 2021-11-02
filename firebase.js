@@ -20,12 +20,10 @@ const firebaseConfig = {
 let app;
 if(firebase.apps.length === 0) {
     app = firebase.initializeApp(firebaseConfig);
-} else {
+  } else {
     app = firebase.app()
-}
-// Initialize Firebase
-// const analytics = getAnalytics(app);
-
+  }
+  
 const auth = firebase.auth()
 
-export { auth };
+export { auth, firebase };
