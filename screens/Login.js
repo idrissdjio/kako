@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, StyleSheet, Text, ImageBackground, TextInput, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Text, ImageBackground, TextInput, TouchableOpacity, ScrollView, ActivityIndicator } from 'react-native';
 import { Entypo, AntDesign } from '@expo/vector-icons';
 import { auth } from '../firebase';
 
@@ -8,22 +8,32 @@ function Login({navigation}) {
     // const [phone, onChangePhone] = useState("")
     const [password, onChangePassword] = useState("")
     const [email, onChangeEmail] = useState("")
+    const [isLoading, setIsLoading] = useState(false);
+
 
     const handleLogin = () => {
+        setIsLoading(true);
         auth
         .signInWithEmailAndPassword(email, password)
         .then(userCredentials => {
             const user = userCredentials.user;
             alert("Login avec sucess")
-            console.log(`Logged in with ${user.email}`);
             navigation.replace("MyTabs")
+            setIsLoading(false);
         })
-        .catch(error => alert(error.message))
-        // navigation.replace("MyTabs")
+        .catch(error => {alert(error.message); setIsLoading(false);})
+    }
+
+    if(isLoading) {
+        return (
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                <ActivityIndicator size="large" color="dodgerblue"/>
+            </View>
+        )
     }
 
     return (
-   <View style={styles.container}>
+   <ScrollView style={styles.container}>
        <ImageBackground source={require('../assets/login_pic.jpg')} style={styles.image_bg}>
            
            <View style={styles.header}>
@@ -43,10 +53,6 @@ function Login({navigation}) {
                    activeOpacity={0.6} 
                    style={styles.loginView}  
                    onPress={handleLogin}
-                //    onPress={() => 
-                //        navigation.navigate('Home', {phone: phone, password: password})
-                //     //    console.log(`${phone} and ${password}`)
-                //     }
                 >
                    <Text style={styles.loginText}>Login</Text>
                </TouchableOpacity>
@@ -71,7 +77,7 @@ function Login({navigation}) {
                
            </View>
        </ImageBackground>
-   </View>
+   </ScrollView>
  );
 }
 

@@ -31,7 +31,7 @@ function SettingScreen({navigation}) {
         })();
 
         const dbRef = firebase.database().ref();
-        dbRef.child("users").get().then((snapshot) => {
+        dbRef.child(`users/${user.displayName}`).get().then((snapshot) => {
             if(snapshot.exists()) {
                 onChangePhone(snapshot.val().phone);
                 onChangeLocation(snapshot.val().location)
@@ -64,7 +64,7 @@ function SettingScreen({navigation}) {
                 }).then(() => {
                     // console.log(user)
                     alert("Informations mis a jour avec sucess...")
-                    navigation.navigate("Account")
+                    navigation.push("MyTabs")
                 }).catch((error) => {
                     console.log("error encoureted...")
                     alert("Svp verifiez votre internet...")
@@ -81,7 +81,7 @@ function SettingScreen({navigation}) {
                     })
                 }
 
-                firebase.database().ref('users/').set({
+                firebase.database().ref(`users/${name}`).set({
                     username: name,
                     email: email,
                     phone, phone,
@@ -96,8 +96,9 @@ function SettingScreen({navigation}) {
                     alert("L'addresse email est incorrecte")
                 } else {
                     if(password !== confirmPassword) {
-                        alert("les mots de passes ne sont pas identiques!!!")
-                    } else {
+                        alert("les mots de passes doivent etre identiques et avoir au moins 6 caracteres!!!")
+                    }  
+                     else {
                         alert("Svp remplissez tous les champs")
                     }
                 }
@@ -211,7 +212,7 @@ const styles = StyleSheet.create({
 export default SettingScreen;
 
 
-const UpdateProfile = ({onPress}) => (
+ const UpdateProfile = ({onPress}) => (
     <TouchableOpacity 
     activeOpacity={0.6} 
     style={styles.updateView}
@@ -221,7 +222,7 @@ const UpdateProfile = ({onPress}) => (
 </TouchableOpacity>
 )
 
-function UploadImage({onPress, image}) {
+export function UploadImage({onPress, image}) {
     // const [image, setImage] = useState(null);
     const addImage=()=>{};
    

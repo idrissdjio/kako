@@ -8,11 +8,11 @@ const ItemsHome = ({data, onPress}) => {
   const renderItem = ({item}) => (
     <View style={styles.item} >
       <TouchableOpacity onPress={() => console.log(item.id)}>
-        <Image source={{uri: item.image}} style={styles.image}></Image>
+        <Image source={{uri: item.item_picture}} style={styles.image}></Image>
         <View style={styles.belowPic}>
             <View style={{padding: 5}}>
-              <Text style={styles.title} numberOfLines={1}>{item.title}</Text>
-              <Text style={styles.price} numberOfLines={2}>{item.price}</Text>
+              <Text style={styles.title} numberOfLines={1}>{item.name_on_the_item}</Text>
+              <Text style={styles.price} numberOfLines={2}>{item.contact}</Text>
             </View>
             <View>
                 <FontAwesome5 name="heart" size={22} color="black" style={styles.likeView}/>
@@ -62,6 +62,7 @@ const styles = StyleSheet.create({
   image: {
     width: "100%",
     height: 150,
+    borderRadius: 5,
   },
   title: {
     fontWeight: "300",

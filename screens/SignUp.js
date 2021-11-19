@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Text, TextInput, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Text, TextInput, TouchableOpacity, ScrollView, ActivityIndicator} from 'react-native';
 import {auth, firebase} from '../firebase'
 
 function SignUp({navigation}) {
@@ -9,15 +9,19 @@ function SignUp({navigation}) {
     const [email, onChangeEmail] = useState("")
     const [password, onChangePassword] = useState("")
     const [confirmPassword, onChangeConfirmPassword] = useState("")
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState(null);
 
     const handleSignUp = () => {
         if(password == confirmPassword && name && phone) {
+            setIsLoading(true);
             auth
                 .createUserWithEmailAndPassword(email, password)
                 .then(userCredentials => {
                     const user = userCredentials.user;
+                    setIsLoading(false);
 
-                    firebase.database().ref('users/').push({
+                    firebase.database().ref(`users/${name}`).push({
                         username: name,
                         email: email,
                         phone, phone,
@@ -28,17 +32,26 @@ function SignUp({navigation}) {
                     console.log(`Registered with ${user.email}`);
                     navigation.navigate("Login", {password: password, email: email})
                 })
-                .catch(error => alert(error.message))
+                .catch(error => {alert("Svp veuillez verifier votre connexion internet...!"); setIsLoading(false);})
         } else if(password !== confirmPassword) {
             alert("Les mots de passe entres ne sont pas identiques!")
         } else {
             alert("Veuillez remplir tous les champs svp!")
-        }
+        } 
         
     }
 
+    if(isLoading) {
+        return (
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                <ActivityIndicator size="large" color="dodgerblue"/>
+            </View>
+        )
+    }
+
+
     return (
-   <View style={styles.container}>
+   <ScrollView style={styles.container}>
        <View style={styles.header}>
            <Text style={styles.title}>Creer un nouveau compte ici</Text>
            <Text style={styles.subTitle}>Nous avons juste besoin de quelques de vos informations</Text>
@@ -66,7 +79,7 @@ function SignUp({navigation}) {
                    <Text style={styles.signInText}>  Sign In</Text>
             </TouchableOpacity>
        </View>
-   </View>
+   </ScrollView>
  );
 }
 

@@ -26,4 +26,4 @@ if(firebase.apps.length === 0) {
   
 const auth = firebase.auth()
 
-export { auth, firebase };
+export { auth, firebase};

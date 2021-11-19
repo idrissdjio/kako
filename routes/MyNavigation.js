@@ -11,6 +11,9 @@ import Account from '../screens/Account';
 import MyTabs from '../components/MyTabs';
 import SignOut from '../components/SignOut';
 import SettingScreen from '../screens/SettingScreen';
+import MyShop from '../screens/MyShop';
+import AddProduct from '../screens/AddProduct';
+import MyProducts from '../screens/MyProducts';
 
 const Stack = createNativeStackNavigator();
 
@@ -27,6 +30,9 @@ function MyNavigation(props) {
                 <Stack.Screen name="MyTabs" component={MyTabs} options={{gestureEnabled: false, headerShown: false}}/>
                 <Stack.Screen name="SignOut" component={SignOut}/>
                 <Stack.Screen name="Settings" component={SettingScreen}/>
+                <Stack.Screen name="MyShop" component={MyShop}/>
+                <Stack.Screen name = "AddProduct" component={AddProduct}/>
+                <Stack.Screen name = "MyProducts" component={MyProducts}/>
             </Stack.Navigator>
         </NavigationContainer>
  );

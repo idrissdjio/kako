@@ -1,21 +1,30 @@
-import React from 'react';
-import { View, StyleSheet, Text, Platform, StatusBar, SafeAreaView, TouchableOpacity, ScrollView } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, StyleSheet, Text, Platform, StatusBar, SafeAreaView, TouchableOpacity, ScrollView, Image } from 'react-native';
 import { FontAwesome5} from '@expo/vector-icons'; 
+import {auth, firebase} from '../firebase';
 
-function Account({navigation}) {
+
+function Account({navigation, route}) {
+
+    const user = auth.currentUser;
+
     return (
    <SafeAreaView style={styles.container}>
        <View style={styles.header}>
            <View style={styles.greetingView}>
                <Text style={styles.greetingtext}>Hey,</Text>
-               <Text style={styles.greetingName}>Idriss!</Text>
+               <Text style={styles.greetingName}>{user.displayName}</Text>
            </View>
            <TouchableOpacity style={styles.pictureView}>
+               {
                <FontAwesome5 name="user-alt" size={45} color="grey"/>
+               &&
+               <Image source={{ uri: user.photoURL }} style={styles.pictureView} />
+               }
            </TouchableOpacity>
        </View>
        <ScrollView style={styles.body}>
-           <AccountElement text="Creer une Boutique" onPress={() => console.log("creer")}/>
+           <AccountElement text="Ma Boutique" navigation={() => navigation.navigate("MyShop")}/>
            <AccountElement text="Settings" navigation={() => navigation.navigate("Settings")}/>
        </ScrollView>
 
@@ -90,7 +99,7 @@ accountEltText: {
 
 export default Account;
 
-const AccountElement = ({text, navigation}) => (
+export const AccountElement = ({text, navigation}) => (
     <TouchableOpacity style={styles.acountElet} activeOpacity="0.8" onPress={navigation}>
         <Text style={styles.accountEltText}>{text}</Text>
         <FontAwesome5 name="arrow-right" size={40} color="white"/>

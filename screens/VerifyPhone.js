@@ -1,42 +1,45 @@
 import * as React from "react";
 import { Text, View, TextInput, Button, StyleSheet, TouchableOpacity, Platform } from "react-native";
-import { FirebaseRecaptchaVerifierModal } from "expo-firebase-recaptcha";
-import * as firebase from "firebase";
+// import { FirebaseRecaptchaVerifierModal } from "expo-firebase-recaptcha";
+// import * as firebase from "firebase";
 
 // Initialize Firebase JS SDK
 // https://firebase.google.com/docs/web/setup
-try {
-  firebase.initializeApp({
-    apiKey: 'AIzaSyApGoaZVtoVTYnftHSbT9l7nDmDVUYJYpU',
-      authDomain: 'playground-d4e7b.firebaseapp.com',
-      databaseURL: 'https://playground-d4e7b.firebaseio.com',
-      projectId: 'playground-d4e7b',
-      storageBucket: 'playground-d4e7b.appspot.com',
-      messagingSenderId: '903405300293',
-      appId: '1:903405300293:web:c55227a2b8064da05d112c',
-  });
-} catch (err) {
-  // ignore app already initialized error in snack
-}
+// try {
+//   firebase.initializeApp({
+//     apiKey: 'AIzaSyApGoaZVtoVTYnftHSbT9l7nDmDVUYJYpU',
+//       authDomain: 'playground-d4e7b.firebaseapp.com',
+//       databaseURL: 'https://playground-d4e7b.firebaseio.com',
+//       projectId: 'playground-d4e7b',
+//       storageBucket: 'playground-d4e7b.appspot.com',
+//       messagingSenderId: '903405300293',
+//       appId: '1:903405300293:web:c55227a2b8064da05d112c',
+//   });
+// } catch (err) {
+//   // ignore app already initialized error in snack
+// }
 
 export default function VerifyPhone() {
-  const recaptchaVerifier = React.useRef(null);
-  const [phoneNumber, setPhoneNumber] = React.useState();
-  const [verificationId, setVerificationId] = React.useState();
-  const [verificationCode, setVerificationCode] = React.useState();
-  const firebaseConfig = firebase.apps.length ? firebase.app().options : undefined;
-  const [message, showMessage] = React.useState((!firebaseConfig || Platform.OS === 'web')
-    ? { text: "To get started, provide a valid firebase config in App.js and open this snack on an iOS or Android device."}
-    : undefined);
+//   const recaptchaVerifier = React.useRef(null);
+//   const [phoneNumber, setPhoneNumber] = React.useState();
+//   const [verificationId, setVerificationId] = React.useState();
+//   const [verificationCode, setVerificationCode] = React.useState();
+//   const firebaseConfig = firebase.apps.length ? firebase.app().options : undefined;
+//   const [message, showMessage] = React.useState((!firebaseConfig || Platform.OS === 'web')
+//     ? { text: "To get started, provide a valid firebase config in App.js and open this snack on an iOS or Android device."}
+//     : undefined);
 
   return (
     <View style={{ padding: 20, marginTop: 50 }}>
-      <FirebaseRecaptchaVerifierModal
+      <Text style={{ marginTop: 20 }}>Enter phone number</Text>
+    </View>
+  );
+}
+      {/* <FirebaseRecaptchaVerifierModal
         ref={recaptchaVerifier}
         firebaseConfig={firebaseConfig}
-      />
-      <Text style={{ marginTop: 20 }}>Enter phone number</Text>
-      <TextInput
+      /> */}
+      {/* <TextInput
         style={{ marginVertical: 10, fontSize: 17 }}
         placeholder="+1 999 999 9999"
         autoFocus
@@ -73,8 +76,8 @@ export default function VerifyPhone() {
         editable={!!verificationId}
         placeholder="123456"
         onChangeText={setVerificationCode}
-      />
-      <Button
+      /> */}
+      {/* <Button
         title="Confirm Verification Code"
         disabled={!verificationId}
         onPress={async () => {
@@ -98,10 +101,10 @@ export default function VerifyPhone() {
             {message.text}
           </Text>
         </TouchableOpacity>
-      ) : undefined}
-    </View>
-  );
-}
+      ) : undefined} */}
+    // </View>
+  // );
+// }
 
 
 

@@ -12,6 +12,7 @@ import Cart from '../screens/Cart';
 const Tab = createBottomTabNavigator();
 
 export default function MyTabs() {
+    
   return (
       <Tab.Navigator
         screenOptions={({ route }) => ({
