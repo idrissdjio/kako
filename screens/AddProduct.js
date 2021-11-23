@@ -12,9 +12,8 @@ function AddProduct({navigation}) {
     const [productTitle, setProductTitle] = useState()
     const [productPrice, setProductPrice] = useState()
     const [productDescription, setProductDescription] = useState()
-    const [numberOfPcs, setNumberOfPcs] = useState()
+    const [SellerPhone, setSellerPhone] = useState()
     const [isLoading, setIsLoading] = useState(false);
-    
 
     useEffect(() => {
         (async () =>{
@@ -68,7 +67,7 @@ function AddProduct({navigation}) {
             formData.append("name_on_the_item", productTitle);
             formData.append("description_of_item", productDescription);
             formData.append('contact', productPrice);
-            formData.append("city_item", numberOfPcs);
+            formData.append("city_item", SellerPhone);
             formData.append("category_item", user.displayName);
             formData.append("user_profile", 1);
 
@@ -88,7 +87,7 @@ function AddProduct({navigation}) {
                     price: productPrice,
                     product: productTitle,
                     description: productDescription,
-                    numberOfPcs: numberOfPcs
+                    numberOfPcs: SellerPhone
                 });
                 setIsLoading(false);
                 alert("Article ajoutee avec sucess!")
@@ -121,8 +120,8 @@ function AddProduct({navigation}) {
        <View style={styles.inputs}>
             <TextInput onChangeText={setProductTitle} value={productTitle} placeholder="eg: Chaussure" maxLength={45} style={styles.textInput}/>
             <TextInput onChangeText={setProductPrice} value={productPrice} placeholder="Prix" maxLength={45} style={styles.textInput} keyboardType="numeric"/>
-            <TextInput onChangeText={setNumberOfPcs} value={numberOfPcs} placeholder="Nombre de pieces" maxLength={45} style={styles.textInput} keyboardType="numeric"/>
-            <TextInput onChangeText={setProductDescription} value={productDescription} placeholder="Description" maxLength={45} style={styles.textInput}/> 
+            <TextInput onChangeText={setProductDescription} value={productDescription} placeholder="Description" maxLength={200} style={styles.textInput}/> 
+            <TextInput onChangeText={setSellerPhone} value={SellerPhone} placeholder="Numero Whatsapp (eg: 670707070)" maxLength={45} style={styles.textInput} keyboardType="phone-pad"/>
 
 
             <TouchableOpacity 

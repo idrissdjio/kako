@@ -3,11 +3,21 @@ import { FlatList, Image, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOp
 import { FontAwesome5} from '@expo/vector-icons'; 
 
 
-const ItemsHome = ({data, onPress}) => {
+// const ItemsHome = ({data, onPress, navigation}) => {
+
+function ItemsHome({data, onPress, navigation}) {
 
   const renderItem = ({item}) => (
     <View style={styles.item} >
-      <TouchableOpacity onPress={() => console.log(item.id)}>
+      <TouchableOpacity onPress={() => navigation.navigate("ProductDetails", {
+          title: item.name_on_the_item,
+          description: item.description_of_item,
+          price: item.contact,
+          datePost: item.date_lost,
+          seller: item.category_item,
+          sellerContact: item.city_item,
+          picture: item.item_picture
+      })}>
         <Image source={{uri: item.item_picture}} style={styles.image}></Image>
         <View style={styles.belowPic}>
             <View style={{padding: 5}}>
@@ -19,15 +29,15 @@ const ItemsHome = ({data, onPress}) => {
             </View>
         </View>
       </TouchableOpacity>
-
+  
     </View>
     
     
   )
-
+  
   return (
     <SafeAreaView style={styles.container}>
-
+  
       <FlatList
         style={{margin: 5}}
         columnWrapperStyle={styles.row}
@@ -40,7 +50,9 @@ const ItemsHome = ({data, onPress}) => {
       />
     </SafeAreaView>
   );
-};
+}
+
+// };
 
 const styles = StyleSheet.create({
   container: {

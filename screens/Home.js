@@ -79,7 +79,7 @@ function Home({route, navigation}) {
            </ScrollView>
        </View>
        <View>
-           <ItemsHome data={data}/>
+           <ItemsHome data={data} navigation={navigation} route={route}/>
        </View>
        </ScrollView>
        

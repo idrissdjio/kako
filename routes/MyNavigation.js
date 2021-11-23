@@ -14,6 +14,7 @@ import SettingScreen from '../screens/SettingScreen';
 import MyShop from '../screens/MyShop';
 import AddProduct from '../screens/AddProduct';
 import MyProducts from '../screens/MyProducts';
+import ProductDetails from '../screens/ProductDetails';
 
 const Stack = createNativeStackNavigator();
 
@@ -33,6 +34,7 @@ function MyNavigation(props) {
                 <Stack.Screen name="MyShop" component={MyShop}/>
                 <Stack.Screen name = "AddProduct" component={AddProduct}/>
                 <Stack.Screen name = "MyProducts" component={MyProducts}/>
+                <Stack.Screen name = "ProductDetails" component={ProductDetails}/>
             </Stack.Navigator>
         </NavigationContainer>
  );
