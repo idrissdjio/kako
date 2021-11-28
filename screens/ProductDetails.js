@@ -1,10 +1,15 @@
 import React from 'react';
 import { View, StyleSheet, Text, ScrollView, Image, TouchableOpacity } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
+import * as Linking from 'expo-linking'
 
 function ProductDetails({route}) {
 
     const {title, description, seller, sellerContact, picture, datePost, price} = route.params
+
+    const handleContact = () => {
+        Linking.openURL(`https://api.WhatsApp.com/send?phone=237${sellerContact}`)
+    }
 
     return (
    <View style={styles.container}>
@@ -22,7 +27,7 @@ function ProductDetails({route}) {
        <TouchableOpacity 
             activeOpacity={0.6} 
             style={styles.contact}  
-            onPress={() => console.log("Contact Pressed")}
+            onPress={handleContact}
             >
             <FontAwesome name="whatsapp" size={40} color="white" />
             <Text style={styles.contactText}>Contactez Vendeur...</Text>

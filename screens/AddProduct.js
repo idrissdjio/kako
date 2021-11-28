@@ -80,7 +80,7 @@ function AddProduct({navigation}) {
             }).then(response => response.json())
             .then(result => {
                 
-                firebase.database().ref(`users/${user.displayName}/products/${productTitle}`).set({
+                firebase.database().ref(`users/${user.displayName}/products/`).push({
                     seller_id: user.uid,
                     seller_name: user.displayName,
                     image: productImage,
