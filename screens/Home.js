@@ -3,7 +3,8 @@ import { View, StyleSheet, Text, TouchableOpacity, TextInput, ScrollView, Image,
 import { auth } from '../firebase';
 import { AntDesign, FontAwesome5, MaterialCommunityIcons  } from '@expo/vector-icons'; 
 import ItemsHome from '../components/ItemsHome';
-import BottomTabs from '../components/BottomTabs'
+import BottomTabs from '../components/BottomTabs';
+import filter from 'lodash.filter';
 
 
 function Home({route, navigation}) {
@@ -13,6 +14,24 @@ function Home({route, navigation}) {
     const [fullData, setFullData] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
+    const [query, setQuery] = useState('');
+
+    const handleSearch = text => {
+        const formattedQuery = text.toLowerCase();
+        const filteredData = filter(fullData, user => {
+          return contains(user, formattedQuery);
+        });
+        setData(filteredData);
+        setQuery(text);
+    }
+
+    const contains = ({name_on_the_item, description_of_item, iconName}, query) => {
+
+        if (name_on_the_item.includes(query) || description_of_item.includes(query)) {
+            return true;
+        }
+        return false;
+    };
 
     useEffect(() => {
         setIsLoading(true);
@@ -49,20 +68,19 @@ function Home({route, navigation}) {
         );
     }
 
-
     
     return (
 
    <View style={styles.container}>
-       <View style={styles.header}>
-           <TextInput onChangeText={onChangeSearchValue} value={searchValue} placeholder=" search" maxLength={45} style={styles.searchInput}/>
+       {/* <View style={styles.header}>
+           <TextInput onChangeText={setQuery} value={query} placeholder=" search" maxLength={45} style={styles.searchInput}/>
            <TouchableOpacity>
                 <AntDesign name="search1" size={32} color="black" style={styles.searchIcon}/>
            </TouchableOpacity>
-       </View>
+       </View> */}
 
-       <ScrollView showsVerticalScrollIndicator={false}>
-       <View>
+       {/* <ScrollView showsVerticalScrollIndicator={false}> */}
+       {/* <View>
            <Text style={styles.text1}>Hey Here!</Text>
            <Text style={styles.text2}>Let's get something ?</Text>
        </View>
@@ -77,11 +95,11 @@ function Home({route, navigation}) {
                 <CatIcons name="book" iconName="Book" color="#f77f00"/>
                 <CatIcons name="chalkboard-teacher" iconName="PC" color="#000"/>
            </ScrollView>
-       </View>
-       <View>
-           <ItemsHome data={data} navigation={navigation} route={route}/>
-       </View>
-       </ScrollView>
+       </View> */}
+       {/* <View> */}
+           <ItemsHome data={data} navigation={navigation} route={route} handleSearch={handleSearch} query={query}/>
+       {/* </View> */}
+       {/* </ScrollView> */}
        
    </View>
  );
