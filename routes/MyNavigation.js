@@ -15,6 +15,7 @@ import MyShop from '../screens/MyShop';
 import AddProduct from '../screens/AddProduct';
 import MyProducts from '../screens/MyProducts';
 import ProductDetails from '../screens/ProductDetails';
+import TermsAndConditions from '../screens/TermsAndConditions';
 
 const Stack = createNativeStackNavigator();
 
@@ -35,6 +36,7 @@ function MyNavigation(props) {
                 <Stack.Screen name = "AddProduct" component={AddProduct}/>
                 <Stack.Screen name = "MyProducts" component={MyProducts}/>
                 <Stack.Screen name = "ProductDetails" component={ProductDetails}/>
+                <Stack.Screen name = "TermsAndConditions" component={TermsAndConditions}/>
             </Stack.Navigator>
         </NavigationContainer>
  );

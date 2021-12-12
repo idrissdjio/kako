@@ -26,7 +26,7 @@ function Welcome({navigation}) {
                 </Text>
            </View>
            <View style={styles.bottomView}>
-               <TouchableOpacity activeOpacity={0.6} onPress={() => {navigation.navigate('Login')}}>
+               <TouchableOpacity activeOpacity={0.6} onPress={() => {navigation.navigate('TermsAndConditions')}}>
                    <View style={styles.button}>
                         <Text style={styles.btnText}>Get Started</Text>
                         <AntDesign name="arrowright" size={30} style={styles.icon}/>
